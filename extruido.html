@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Extruido · Segundo parcial PMM</title>
+  <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+  <header class="barra">
+    <a class="marca" href="index.html"><strong>PMM</strong><span>Segundo parcial</span></a>
+    <nav>
+      <a href="laminado.html">Laminado</a>
+      <a href="trefilado.html">Trefilado</a>
+      <a href="extruido.html" aria-current="page">Extruido</a>
+      <a href="fundicion.html">Fundición</a>
+    </nav>
+  </header>
+
+  <main class="envoltorio pagina">
+    <header class="encabezado-op">
+      <h1>Extruido</h1>
+      <p class="resumen">Presión, fuerza y longitud final.</p>
+    </header>
+
+    <div class="trabajo">
+      <form class="panel" id="form-extruido" data-clave="pmm-extruido">
+        <div class="panel-cuerpo">
+        <p class="grupo">Tocho y contenedor</p>
+        <div class="rejilla">
+          <label class="campo">Diámetro D₀ (mm)<input id="D0" name="D0" type="number" step="any" value="50"></label>
+          <label class="campo">Longitud L₀ (mm)<input id="L0" name="L0" type="number" step="any" value="80"></label>
+        </div>
+
+        <p class="grupo">Material</p>
+        <div class="rejilla">
+          <label class="campo">Resistencia K (MPa)<input id="K" name="K" type="number" step="any" value="400"></label>
+          <label class="campo">Endurecimiento n<input id="n" name="n" type="number" step="any" value="0.1"></label>
+          <label class="campo">Johnson a<input id="a" name="a" type="number" step="any" value="0.8"></label>
+          <label class="campo">Johnson b<input id="b" name="b" type="number" step="any" value="1.35"></label>
+        </div>
+
+        <p class="grupo">Sección de salida</p>
+        <fieldset class="modo">
+          <legend>Forma</legend>
+          <label><input type="radio" name="seccion" id="personalizada" value="personalizada" checked> Como el ejercicio</label>
+          <label><input type="radio" name="seccion" id="circular" value="circular"> Circular</label>
+        </fieldset>
+        <div class="rejilla" id="campos-forma">
+          <label class="campo"><span>Área <span class="var">A<sub>f</sub></span> (mm²)</span><input id="Af" name="Af" type="number" step="any" value="346.34"></label>
+          <label class="campo">Perímetro Cₓ (mm)<input id="Cx" name="Cx" type="number" step="any" value="148.53"></label>
+        </div>
+        <div class="rejilla oculto" id="campos-circular">
+          <label class="campo ancho"><span>Diámetro de salida <span class="var">D<sub>f</sub></span> (mm)</span><input id="Df" name="Df" type="number" step="any" value="20"></label>
+        </div>
+        </div>
+        <div id="errores" class="errores" hidden></div>
+        <div class="acciones">
+          <button class="principal" type="submit">Calcular</button>
+          <button class="secundario" type="button" id="ej-clase">Ejercicio de clase</button>
+        </div>
+      </form>
+
+      <section class="salida">
+        <figure class="esquema">
+          <svg class="dibujo" viewBox="0 0 540 230" role="img" aria-label="Esquema de extrusión">
+            <rect width="540" height="230" fill="#fff"/>
+            <rect x="86" y="62" width="230" height="100" fill="#e7eef6" stroke="#123055" stroke-width="1.6"/>
+            <rect x="24" y="82" width="62" height="60" fill="#123055"/>
+            <path d="M316 62 L378 96 H500 V128 H378 L316 162 Z" fill="#ffe08a" stroke="#123055" stroke-width="1.4"/>
+            <polygon points="478,112 492,112 492,107 508,112 492,117 492,112" fill="#f0b400"/>
+            <text x="24" y="72">Pistón</text>
+            <text x="150" y="50" data-dato="D0">D0</text>
+            <text x="150" y="190" data-dato="L0">L0</text>
+            <text x="378" y="50" data-dato="Af">Af</text>
+          </svg>
+          <figcaption>Extrusión directa.</figcaption>
+        </figure>
+        <div id="resultados">
+          <p class="vacio">Oprime Calcular para ver los resultados.</p>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="pie">
+    <p>Lisseth Castellanos · Martín David Cadena · Daniel Peña · Andrés Felipe Trujillo</p>
+    <p>Extruido · Procesos de Manufactura Moderna</p>
+  </footer>
+  <script src="js/comun.js"></script>
+  <script src="js/extruido.js"></script>
+</body>
+</html>

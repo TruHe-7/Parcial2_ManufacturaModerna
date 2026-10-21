@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Fundición · Segundo parcial PMM</title>
+  <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+  <header class="barra">
+    <a class="marca" href="index.html"><strong>PMM</strong><span>Segundo parcial</span></a>
+    <nav>
+      <a href="laminado.html">Laminado</a>
+      <a href="trefilado.html">Trefilado</a>
+      <a href="extruido.html">Extruido</a>
+      <a href="fundicion.html" aria-current="page">Fundición</a>
+    </nav>
+  </header>
+
+  <main class="envoltorio pagina">
+    <header class="encabezado-op">
+      <h1>Fundición</h1>
+      <p class="resumen">Contracción del modelo y tiempo de solidificación.</p>
+    </header>
+
+    <div class="trabajo">
+      <form class="panel" id="form-fundicion" data-clave="pmm-fundicion">
+        <div class="panel-cuerpo">
+        <p class="grupo">Material</p>
+        <div class="rejilla">
+          <label class="campo ancho">Referencia
+            <select id="material" name="material">
+              <option value="laton">Latón del ejercicio</option>
+              <option value="aluminio">Aluminio</option>
+              <option value="acero">Acero</option>
+              <option value="hierro">Hierro fundido</option>
+              <option value="otro">Otro, lo edito yo</option>
+            </select>
+          </label>
+          <label class="campo">Dilatación α (1/°C)<input id="alfa" name="alfa" type="number" step="any" value="0.000019"></label>
+          <label class="campo">Fusión T (°C)<input id="tfusion" name="tfusion" type="number" step="any" value="940"></label>
+          <label class="campo">Sobrecalentamiento<input id="factor" name="factor" type="number" step="any" value="1.15"></label>
+          <label class="campo">Ambiente (°C)<input id="tamb" name="tamb" type="number" step="any" value="20"></label>
+        </div>
+        <p class="grupo">Pieza deseada, ya fría</p>
+        <div class="rejilla">
+          <label class="campo">Longitud L₀ (m)<input id="L0" name="L0" type="number" step="any" value="0.8"></label>
+          <label class="campo">Ancho (m), opcional<input id="anchoPieza" name="anchoPieza" type="number" step="any"></label>
+          <label class="campo ancho">Alto (m), opcional<input id="altoPieza" name="altoPieza" type="number" step="any"></label>
+        </div>
+
+        <p class="grupo">Molde y solidificación</p>
+        <div class="rejilla">
+          <label class="campo ancho">Forma de la pieza
+            <select id="forma" name="forma">
+              <option value="cilindro">Cilindro</option>
+              <option value="bloque">Bloque</option>
+              <option value="libre">Volumen y área propios</option>
+            </select>
+          </label>
+        </div>
+        <div class="rejilla" id="campos-cilindro">
+          <label class="campo">Radio (cm)<input id="radio" name="radio" type="number" step="any" value="50"></label>
+          <label class="campo">Altura (cm)<input id="altura" name="altura" type="number" step="any" value="100"></label>
+          <label class="campo campo-linea ancho"><input id="tapas" name="tapas" type="checkbox" checked> Incluir tapa y base en el área de enfriamiento</label>
+        </div>
+        <div class="rejilla oculto" id="campos-bloque">
+          <label class="campo">Largo (cm)<input id="largo" name="largo" type="number" step="any" value="40"></label>
+          <label class="campo">Ancho (cm)<input id="ancho" name="ancho" type="number" step="any" value="20"></label>
+          <label class="campo">Alto (cm)<input id="alto" name="alto" type="number" step="any" value="15"></label>
+        </div>
+        <div class="rejilla oculto" id="campos-libre">
+          <label class="campo">Volumen (cm³)<input id="Vol" name="Vol" type="number" step="any" value="1000"></label>
+          <label class="campo">Área (cm²)<input id="Area" name="Area" type="number" step="any" value="600"></label>
+        </div>
+        <div class="rejilla">
+          <label class="campo"><span>Constante del molde <span class="var">C<sub>m</sub></span> (min/cmⁿ)</span><input id="Cm" name="Cm" type="number" step="any" value="0.46"></label>
+          <label class="campo">Exponente n<input id="exponente" name="exponente" type="number" step="any" value="2"></label>
+        </div>
+        </div>
+        <div id="errores" class="errores" hidden></div>
+        <div class="acciones">
+          <button class="principal" type="submit">Calcular</button>
+          <button class="secundario" type="button" id="ej-clase">Ejercicio de clase</button>
+        </div>
+      </form>
+
+      <section class="salida">
+        <figure class="esquema">
+          <svg class="dibujo" viewBox="0 0 540 240" role="img" aria-label="Esquema de fundición">
+            <rect width="540" height="240" fill="#fff"/>
+            <path d="M30 78 H200 L232 40 H320 L352 78 H510 V186 H30 Z" fill="#efe6d6" stroke="#123055" stroke-width="1.4"/>
+            <rect x="170" y="108" width="180" height="52" rx="26" fill="#ffe08a" stroke="#123055"/>
+            <path d="M262 40 V108" stroke="#f0b400" stroke-width="8"/>
+            <text x="36" y="28" data-dato="cm">Cm</text>
+            <text x="36" y="220" data-dato="radio">r</text>
+            <text x="250" y="220" data-dato="altura">h</text>
+          </svg>
+          <figcaption>Molde y pieza. Cm es la constante del molde.</figcaption>
+        </figure>
+        <div id="resultados">
+          <p class="vacio">Oprime Calcular para ver los resultados.</p>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="pie">
+    <p>Lisseth Castellanos · Martín David Cadena · Daniel Peña · Andrés Felipe Trujillo</p>
+    <p>Fundición · Procesos de Manufactura Moderna</p>
+  </footer>
+  <script src="js/comun.js"></script>
+  <script src="js/fundicion.js"></script>
+</body>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Trefilado · Segundo parcial PMM</title>
+  <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+  <header class="barra">
+    <a class="marca" href="index.html"><strong>PMM</strong><span>Segundo parcial</span></a>
+    <nav>
+      <a href="laminado.html">Laminado</a>
+      <a href="trefilado.html" aria-current="page">Trefilado</a>
+      <a href="extruido.html">Extruido</a>
+      <a href="fundicion.html">Fundición</a>
+    </nav>
+  </header>
+
+  <main class="envoltorio pagina">
+    <header class="encabezado-op">
+      <h1>Trefilado</h1>
+      <p class="resumen">Esfuerzo, fuerza y potencia en el dado.</p>
+    </header>
+
+    <div class="trabajo">
+      <form class="panel" id="form-trefilado" data-clave="pmm-trefilado">
+        <div class="panel-cuerpo">
+        <p class="grupo">Geometría del alambre</p>
+        <div class="rejilla">
+          <label class="campo">Diámetro inicial D₀ (mm)<input id="D0" name="D0" type="number" step="any" value="2.5"></label>
+          <label class="campo"><span>Diámetro final <span class="var">D<sub>f</sub></span> (mm)</span><input id="Df" name="Df" type="number" step="any" value="2"></label>
+          <label class="campo">Pasadas<input id="pasadas" name="pasadas" type="number" min="1" step="1" value="1"></label>
+          <label class="campo">Velocidad de salida (m/s)<input id="v" name="v" type="number" step="any" value="1"></label>
+        </div>
+
+        <p class="grupo">Equipo: el dado</p>
+        <div class="rejilla">
+          <label class="campo">Semiángulo α (°)<input id="angulo" name="angulo" type="number" step="any" value="15"></label>
+          <label class="campo">Fricción μ<input id="mu" name="mu" type="number" step="any" value="0.07"></label>
+        </div>
+
+        <p class="grupo">Material</p>
+        <div class="rejilla">
+          <label class="campo">Endurecimiento n<input id="n" name="n" type="number" step="any" value="0.2"></label>
+          <label class="campo">Resistencia K (MPa)<input id="K" name="K" type="number" step="any" value="207"></label>
+        </div>
+        </div>
+        <div id="errores" class="errores" hidden></div>
+        <div class="acciones">
+          <button class="principal" type="submit">Calcular</button>
+          <button class="secundario" type="button" id="ej-clase">Ejercicio de clase</button>
+        </div>
+      </form>
+
+      <section class="salida">
+        <figure class="esquema">
+          <svg class="dibujo" viewBox="0 0 540 240" role="img" aria-label="Esquema de trefilado">
+            <rect width="540" height="240" fill="#fff"/>
+            <path d="M130 62 H230 L320 108 H470 V156 H320 L230 202 H130 Z" fill="#e7eef6" stroke="#123055" stroke-width="1.5"/>
+            <path d="M18 112 H150 V152 H18 Z" fill="#ffe08a" stroke="#123055"/>
+            <path d="M360 120 H500 V144 H360 Z" fill="#ffe08a" stroke="#123055"/>
+            <path d="M230 62 L320 108" fill="none" stroke="#f0b400" stroke-width="2"/>
+            <polygon points="486,132 500,132 500,127 516,132 500,137 500,132" fill="#f0b400"/>
+            <text x="18" y="100" data-dato="D0">D0</text>
+            <text x="360" y="90" data-dato="Df">Df</text>
+            <text x="250" y="48" data-dato="ang">α</text>
+            <text x="18" y="226" data-dato="mu">μ</text>
+          </svg>
+          <figcaption>Trefilado. α es el semiángulo del dado.</figcaption>
+        </figure>
+        <div id="resultados">
+          <p class="vacio">Oprime Calcular para ver los resultados.</p>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="pie">
+    <p>Lisseth Castellanos · Martín David Cadena · Daniel Peña · Andrés Felipe Trujillo</p>
+    <p>Trefilado · Procesos de Manufactura Moderna</p>
+  </footer>
+  <script src="js/comun.js"></script>
+  <script src="js/trefilado.js"></script>
+</body>
+</html>
