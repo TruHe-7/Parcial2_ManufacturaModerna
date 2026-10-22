@@ -119,8 +119,8 @@ function calcularFundicion() {
   const filasContra = [
     fila("Coeficiente lineal", "α", "dilatación del material", `${sci(alfa)} K⁻¹`, `${sci(alfa)} °C⁻¹`),
     fila("Longitud deseada", "L₀", "pieza ya fría", `${num(L0, 4)} m`, `${num(L0 * 1000, 2)} mm`),
-    fila("Temperatura de vaciado", "T<sub>v</sub> = factor · T<sub>fusión</sub>", `${num(factor, 3)} · ${num(tfusion, 1)} °C`, `${num(Tcol, 2)} °C`, ""),
-    fila("Intervalo de temperatura", "ΔT = T<sub>v</sub> − T<sub>amb</sub>", `${num(Tcol, 2)} − ${num(tamb, 1)}`, `${num(dT, 2)} K`, "el intervalo en °C tiene el mismo número"),
+    fila("Temperatura de vaciado", "T<sub>v</sub> = factor · T<sub>fusión</sub>", `${num(factor, 3)} · ${num(tfusion, 1)} °C`, `${num(Tcol + 273.15, 2)} K`, `${num(Tcol, 2)} °C`),
+    fila("Intervalo de temperatura", "ΔT = T<sub>v</sub> − T<sub>amb</sub>", `${num(Tcol, 2)} − ${num(tamb, 1)}`, `${num(dT, 2)} K`),
     fila("Contracción lineal", "ΔL = α · L₀ · ΔT", `${sci(alfa)} · ${num(L0, 4)} · ${num(dT, 2)}`, `${num(dL, 5)} m`, `${num(dL * 1000, 3)} mm`),
     fila("Longitud del modelo", "L<sub>m</sub> = L₀ + ΔL", `${num(L0, 4)} + ${num(dL, 5)}`, `${num(Lmodelo, 4)} m`, `${num(Lmodelo * 1000, 2)} mm`),
     fila("Coeficiente de área", "β = 2α", `2 · ${sci(alfa)}`, `${sci(beta)} K⁻¹`, ""),
